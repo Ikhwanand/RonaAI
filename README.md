@@ -64,7 +64,7 @@ A React-based frontend for the Skin Doctor application, providing an intuitive i
 ### Installation
 1. Navigate to project directory:
    ```bash
-   cd d:\skin-doctor-app\project\frontend
+   cd .\frontend
    ```
 
 2. Install dependencies:
