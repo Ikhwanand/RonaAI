@@ -1,4 +1,4 @@
-# Skin Doctor App - Frontend
+# RonaAI - Frontend
 
 A React-based frontend for the Skin Doctor application, providing an intuitive interface for skin health analysis and tracking.
 
@@ -28,6 +28,9 @@ A React-based frontend for the Skin Doctor application, providing an intuitive i
   - Skincare product catalog
   - AI recommendations
   - Product effectiveness tracking
+
+- **Skincare Recommendations**
+  - Give recommendations skincare
 
 ## 🛠️ Tech Stack
 
@@ -128,5 +131,3 @@ frontend/
 ## 📄 License
 MIT License - see [LICENSE](LICENSE) for details.
 
-## 📧 Contact
-For questions or support: [aldirizaldy977@gmail.com](mailto:aldirizaldy977@gmail.com)
