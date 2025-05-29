@@ -14,7 +14,8 @@ const ProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [showPassword, setShowPassword] = useState(null);
+  const [showCurrentPassword, setCurrentPassword] = useState(null);
+  const [showNewPassword, setNewPassword] = useState(null);
 
   useEffect(() => {
     if (user) {
@@ -172,15 +173,15 @@ const ProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
             <div className="relative">
               <input
                 {...register("currentPassword")} 
-                type={showPassword ? "text" : "password"}
+                type={showCurrentPassword ? "text" : "password"}
                 className="w-full p-2 border rounded"
               />
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 flex items-center pr-3"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setCurrentPassword(!showCurrentPassword)}
               >
-                {showPassword ? (
+                {showCurrentPassword ? (
                   <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -199,15 +200,15 @@ const ProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
             <div className="relative">
               <input
                 {...register("newPassword")} 
-                type={showPassword ? "text" : "password"}
+                type={showNewPassword ? "text" : "password"}
                 className="w-full p-2 border rounded"
               />
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 flex items-center pr-3"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setNewPassword(!showNewPassword)}
               >
-                {showPassword ? (
+                {showNewPassword ? (
                   <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
