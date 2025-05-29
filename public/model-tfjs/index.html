@@ -1,0 +1,110 @@
+
+
+
+
+
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  </head>
+  <body>
+
+    Make sure to run this via a server
+
+    <br>
+    <input accept="image/*" type='file' id="input_button" />
+
+    <br>
+    <img id="img1" src="./image.jpg" style="max-width: 512px ; max-height:512px;" />
+    <br>  <br>
+    <button   onclick="predict()">predict</button>
+    <br>
+    <p id="result"> </p>
+
+    <canvas id="canvas" width="512" height="512" ></canvas>
+
+
+    <script>
+
+      let image = document.getElementById('img1');
+      let input_button = document.getElementById('input_button');
+
+      input_button.onchange = evt => {
+        const [file] = input_button.files
+        if (file) {
+          image.src = URL.createObjectURL(file)
+        }
+      }
+
+
+      async function predict() {
+        var  model = await tf.loadGraphModel('./model.json');
+
+        let classes = [  "face" ,  ] ;
+
+        let example = tf.browser.fromPixels(document.getElementById("img1") , 3 ).cast('float32');
+
+        console.log(  example.shape  )
+
+        if( example.shape[0] > example.shape[1])
+            example = tf.pad( example,  [ [0,0] , [0 ,example.shape[0] - example.shape[1] ]  , [0,0]] , 0 )
+        else
+          example = tf.pad( example,  [ [0, example.shape[1] - example.shape[0] ] , [0 ,0 ] , [0,0] ] , 0 )
+
+        example = example.resizeBilinear([512,512])
+
+        example = example.reshape([1,example.shape[0], example.shape[1] ,example.shape[2]]);
+
+        let prediction = await model.execute(example);
+
+        let boxes, labels, scores;
+        if( model.executor.graph.outputs[0].name == "Identity_1")
+        {
+           boxes = prediction[1];
+           labels  =  tf.argMax (prediction[0], -1);
+           scores  =  tf.max (prediction[0], -1) ;
+        }
+        else{
+             boxes = prediction[0];
+             labels  =  tf.argMax (prediction[1], -1);
+             scores  =  tf.max (prediction[1], -1) ;
+        }
+
+        
+
+        console.log(boxes.shape)
+        boxes = boxes.reshape([ boxes.shape[1], boxes.shape[2]])
+        scores = scores.reshape([scores.shape[1] ])
+
+        let selected_idx = tf.image.nonMaxSuppression(boxes, scores,  50, 0.2, 0.6 );
+
+        selected_idx = await selected_idx.data()
+        boxes = await boxes.data()
+        scores = await scores.data()
+        labels = await labels.data()
+
+        
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+
+        let s = Math.max(document.getElementById("img1").naturalWidth , document.getElementById("img1").naturalHeight)
+
+        ctx.drawImage(document.getElementById("img1") , 0, 0, s, s, 0, 0, 512, 512);
+
+
+        for(let i=0 ; i< selected_idx.length; i++ )
+        {
+          let j = selected_idx[i];
+          console.log( boxes[j*4] , boxes[j*4+1 ],  boxes[j*4+2],  boxes[j*4+3 ], classes[labels[j]])
+          ctx.beginPath();
+          ctx.strokeStyle = 'red';
+          ctx.rect(boxes[j*4], boxes[j*4+1 ], boxes[j*4+2]-boxes[j*4], boxes[j*4+3 ]-boxes[j*4+1 ] );
+          ctx.stroke();
+        }
+        
+
+        console.log(boxes);
+      }
+    </script>
+  </body>
+</html>
