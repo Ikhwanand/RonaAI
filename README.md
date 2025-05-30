@@ -95,16 +95,19 @@ A comprehensive web application for skin health analysis and tracking, combining
     ```bash
     cd frontend
     ```
+
 2.  **Install dependencies**:
     ```bash
     npm install
     # or yarn install
     ```
+
 3.  **Configure environment**:
     Create a `.env` file in the `frontend/src` directory (or `frontend` root, depending on Vite config). Copy `frontend/src/.env.example` if it exists, or create it manually.
     ```env
     VITE_API_URL=http://localhost:8000
     ```
+
 4.  **Start development server**:
     ```bash
     npm run dev
