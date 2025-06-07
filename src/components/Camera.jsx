@@ -198,6 +198,17 @@ const Camera = ({ onCapture, onClose }) => {
 
       {!isCameraActive ? (
         <div className="space-y-4">
+          <div className="p-4 bg-blue-50 rounded-lg mb-4">
+            <h3 className="font-medium text-blue-800 mb-2">
+              Photo Capture Guidelines:
+            </h3>
+            <ul className="text-sm text-blue-700 list-disc list-inside space-y-1">
+              <li>Make sure your face is centered in the frame</li>
+              <li>Avoid lighting that is too dark or too bright</li>
+              <li>Keep a distance of about 30-50 cm from the camera</li>
+              <li>Position your face directly facing the camera</li>
+            </ul>
+          </div>
           <button 
             className="btn-primary w-full" 
             onClick={() => setIsCameraActive(true)}
@@ -217,7 +228,14 @@ const Camera = ({ onCapture, onClose }) => {
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 relative">
+            <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="w-3/4 h-3/4 mx-auto my-8 border-2 border-white/50 rounded-full border-dashed flex items-center justify-center">
+                <div className="text-white text-sm bg-black/50 px-3 py-1 rounded-full">
+                  Position your face inside the circle
+                </div>
+              </div>
+            </div>
             <Webcam
               audio={false}
               ref={webcamRef}
