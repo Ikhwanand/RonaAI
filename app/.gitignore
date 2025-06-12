@@ -1,0 +1,10 @@
+__pycache__/
+./api/__pycache__/
+./core/__pycache__/
+./db/__pycache__/
+./models/__pycache__/
+./schemas/__pycache__/
+./services/__pycache__/
+./uploads/__pycache__/
+
+.env

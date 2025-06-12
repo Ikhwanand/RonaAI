@@ -1,0 +1,62 @@
+{
+  "overall_health": "Poor",
+  "skin_type": "Oily",
+  "concerns": [
+    {
+      "name": "Acne",
+      "severity": "Severe",
+      "type": "Inflammatory",
+      "confidence": 0.95
+    },
+    {
+      "name": "Erythema",
+      "severity": "Moderate",
+      "type": "Diffuse",
+      "confidence": 0.85
+    },
+    {
+      "name": "Post-inflammatory hyperpigmentation",
+      "severity": "Mild",
+      "type": null,
+      "confidence": 0.75
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Topical Retinoid",
+      "description": "Apply a thin layer of adapalene or tretinoin to the affected areas at night. Start with a low concentration and gradually increase as tolerated. Use sunscreen during the day.",
+      "priority": "High"
+    },
+    {
+      "title": "Topical Antibiotic",
+      "description": "Apply clindamycin or erythromycin solution twice daily to reduce inflammation and bacterial load.",
+      "priority": "High"
+    },
+    {
+      "title": "Oral Antibiotic",
+      "description": "Consider oral antibiotics such as doxycycline or minocycline if topical treatments are not sufficient. Consult with a physician for prescription and monitoring.",
+      "priority": "Medium"
+    },
+    {
+      "title": "Gentle Cleanser",
+      "description": "Use a mild, non-comedogenic cleanser twice daily to avoid irritating the skin.",
+      "priority": "High"
+    },
+    {
+      "title": "Non-Comedogenic Moisturizer",
+      "description": "Apply a light, non-comedogenic moisturizer to maintain skin hydration without clogging pores.",
+      "priority": "Medium"
+    },
+    {
+      "title": "Sun Protection",
+      "description": "Use a broad-spectrum sunscreen with SPF 30 or higher daily to prevent further damage and hyperpigmentation.",
+      "priority": "High"
+    }
+  ],
+  "analysis_metrics": {
+    "skin_hydration": 40,
+    "texture_uniformity": 35,
+    "pore_visibility": 80,
+    "overall_score": 30
+  }
+}
